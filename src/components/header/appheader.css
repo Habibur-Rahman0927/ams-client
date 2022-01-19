@@ -1,0 +1,10 @@
+.logginOut {
+  cursor: pointer;
+}
+.navLinkColor {
+  text-decoration: none;
+  color: #4f5d73;
+}
+.navLinkColor:hover {
+  color: #4f5d73;
+}
