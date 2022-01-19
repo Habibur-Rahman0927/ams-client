@@ -26,7 +26,7 @@ const Colors = () => {
         Authorization: `Bearer ${userInfoFromLocalStorage.token}`,
       },
     }
-    const { data } = await axios.get('http://localhost:5500/api/users', config)
+    const { data } = await axios.get('http://localhost:5000/api/users', config)
     setUser(data)
     // console.log(data)
   }
@@ -41,7 +41,7 @@ const Colors = () => {
           Authorization: `Bearer ${userInfoFromLocalStorage.token}`,
         },
       }
-      await axios.delete(`http://localhost:5500/api/users/${id}`, config)
+      await axios.delete(`http://localhost:5000/api/users/${id}`, config)
     }
   }
   return (

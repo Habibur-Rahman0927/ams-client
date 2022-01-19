@@ -79,7 +79,7 @@ const EditUser = () => {
         Authorization: `Bearer ${userInfoFromLocalStorage.token}`,
       },
     }
-    const response = await axios.put(`http://localhost:5500/api/users/${user._id}`, user, config)
+    const response = await axios.put(`http://localhost:5000/api/users/${user._id}`, user, config)
     setMessage(response.statusText)
   }
   return (

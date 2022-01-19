@@ -22,7 +22,7 @@ const Typography = () => {
         Authorization: `Bearer ${userInfoFromLocalStorage ? userInfoFromLocalStorage.token : null}`,
       },
     }
-    const { data } = await axios.get('http://localhost:5500/api/attendance/check', config)
+    const { data } = await axios.get('http://localhost:5000/api/attendance/check', config)
     setCheckData(data)
     // console.log(data)
   }

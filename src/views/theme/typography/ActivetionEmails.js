@@ -9,7 +9,7 @@ const ActivetionEmails = () => {
   useEffect(() => {
     if (activetion_token) {
       const emailActivetion = async () => {
-        const { data } = await axios.post('http://localhost:5500/api/users/activetion', {
+        const { data } = await axios.post('http://localhost:5000/api/users/activetion', {
           activetion_token,
         })
         console.log(data)

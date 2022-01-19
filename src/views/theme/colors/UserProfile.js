@@ -82,7 +82,7 @@ const UserProfile = () => {
         Authorization: `Bearer ${userInfoFromLocalStorage.token}`,
       },
     }
-    const response = await axios.put(`http://localhost:5500/api/users/profile`, user, config)
+    const response = await axios.put(`http://localhost:5000/api/users/profile`, user, config)
     localStorage.setItem('userTime', JSON.stringify(response.data))
     setMessage(response.statusText)
   }

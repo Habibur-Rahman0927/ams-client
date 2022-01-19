@@ -110,7 +110,7 @@ const QrCode = () => {
   //               },
   //             }
   //             const { data } = await axios.post(
-  //               `http://localhost:5500/api/attendance/select`,
+  //               `http://localhost:5000/api/attendance/select`,
   //               { name, check, time, date, lati, long, placedata },
   //               config,
   //             )
@@ -125,7 +125,7 @@ const QrCode = () => {
   //               },
   //             }
   //             const { data } = await axios.post(
-  //               `http://localhost:5500/api/pending/selectpending`,
+  //               `http://localhost:5000/api/pending/selectpending`,
   //               { name, check, time, date, lati, long, placedata },
   //               config,
   //             )
@@ -160,7 +160,7 @@ const QrCode = () => {
   //             },
   //           }
   //           const { data } = await axios.post(
-  //             `http://localhost:5500/api/attendance/select`,
+  //             `http://localhost:5000/api/attendance/select`,
   //             { name, check, time, date, lati, long, placedata },
   //             config,
   //           )
@@ -193,7 +193,7 @@ const QrCode = () => {
   //         }`,
   //       },
   //     }
-  //     const { data } = await axios.get('http://localhost:5500/api/attendance/select', config)
+  //     const { data } = await axios.get('http://localhost:5000/api/attendance/select', config)
   //     setUserDate(data)
   //   }
   //   loadSelectData()

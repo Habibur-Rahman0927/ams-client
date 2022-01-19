@@ -24,7 +24,7 @@ const Colors = () => {
         Authorization: `Bearer ${userInfoFromLocalStorage && userInfoFromLocalStorage.token}`,
       },
     }
-    const { data } = await axios.get('http://localhost:5500/api/pending/pendingadcheck', config)
+    const { data } = await axios.get('http://localhost:5000/api/pending/pendingadcheck', config)
     setCheckData(data)
     // console.log(data)
   }
@@ -52,7 +52,7 @@ const Colors = () => {
           },
         }
         const { data } = await axios.post(
-          `http://localhost:5500/api/pending/pendingcheck`,
+          `http://localhost:5000/api/pending/pendingcheck`,
           { _id, user, name, check, time, date, lati, long, placedata },
           config,
         )
@@ -68,7 +68,7 @@ const Colors = () => {
         Authorization: `Bearer ${userInfoFromLocalStorage && userInfoFromLocalStorage.token}`,
       },
     }
-    await axios.delete(`http://localhost:5500/api/pending/pendingcheckdelete/${id}`, config)
+    await axios.delete(`http://localhost:5000/api/pending/pendingcheckdelete/${id}`, config)
     // console.log('delete')
   }
   return (

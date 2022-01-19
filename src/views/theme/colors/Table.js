@@ -22,7 +22,7 @@ const Colors = () => {
         Authorization: `Bearer ${userInfoFromLocalStorage && userInfoFromLocalStorage.token}`,
       },
     }
-    const { data } = await axios.get('http://localhost:5500/api/attendance/adcheck', config)
+    const { data } = await axios.get('http://localhost:5000/api/attendance/adcheck', config)
     setCheckData(data)
     // console.log(data)
   }
