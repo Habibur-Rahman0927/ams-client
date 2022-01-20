@@ -31,11 +31,7 @@ const AppContent = () => {
             )
           })}
           {userInfoFromLocalStorage ? (
-            userInfoFromLocalStorage.isAdmin ? (
-              <Redirect from="/" to="/dashboard" />
-            ) : (
-              <Redirect from="/" to="/checking/check" />
-            )
+            <Redirect from="/" to="/dashboard" />
           ) : (
             <Redirect from="/" to="/login" />
           )}

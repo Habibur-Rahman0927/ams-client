@@ -68,6 +68,9 @@ const AppSidebar = () => {
                     }}
                   >
                     <>
+                      <NavLink to="/dashboard" className="navDesgin">
+                        <h6 className="navDesgin">Dashboard</h6>
+                      </NavLink>
                       <NavLink to="/checking/admin" className="navDesgin">
                         <h6 className="navDesgin">Datavalues</h6>
                       </NavLink>

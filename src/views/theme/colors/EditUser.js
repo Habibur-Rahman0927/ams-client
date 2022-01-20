@@ -64,7 +64,6 @@ ThemeColor.propTypes = {
 const EditUser = () => {
   const params = useParams()
   const [name, seTname] = useState('')
-  const [email, setEmail] = useState('')
   const [isAdmin, setIsAdmin] = useState(false)
   const [message, setMessage] = useState('')
   const userInfoFromLocalStorage = localStorage.getItem('userTime')
@@ -72,7 +71,7 @@ const EditUser = () => {
     : null
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const user = { _id: params.id, name, email, isAdmin }
+    const user = { _id: params.id, name, isAdmin }
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -105,16 +104,6 @@ const EditUser = () => {
                       autoComplete="username"
                       value={name}
                       onChange={(e) => seTname(e.target.value)}
-                      required
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText>@</CInputGroupText>
-                    <CFormInput
-                      placeholder="Email"
-                      autoComplete="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
                       required
                     />
                   </CInputGroup>

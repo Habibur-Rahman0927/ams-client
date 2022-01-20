@@ -62,7 +62,6 @@ ThemeColor.propTypes = {
 
 const UserProfile = () => {
   const [name, seTname] = useState('')
-  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
   const userInfoFromLocalStorage = localStorage.getItem('userTime')
@@ -73,7 +72,6 @@ const UserProfile = () => {
     const user = {
       id: userInfoFromLocalStorage._id,
       name,
-      email,
       password,
     }
     const config = {
@@ -106,16 +104,6 @@ const UserProfile = () => {
                       autoComplete="username"
                       value={name}
                       onChange={(e) => seTname(e.target.value)}
-                      required
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText>@</CInputGroupText>
-                    <CFormInput
-                      placeholder="Email"
-                      autoComplete="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
                       required
                     />
                   </CInputGroup>
