@@ -15,7 +15,7 @@ const ActivetionEmails = () => {
         console.log(data)
         localStorage.setItem('userTime', JSON.stringify(data))
         if (data) {
-          history.push('/checking/check')
+          history.push('/dashboard')
         }
       }
       emailActivetion()

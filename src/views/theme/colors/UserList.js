@@ -12,6 +12,8 @@ import CIcon from '@coreui/icons-react'
 
 import { cilCheckAlt, cilX, cilTrash, cilPenAlt } from '@coreui/icons'
 import { NavLink } from 'react-router-dom'
+import QRCode from 'qrcode.react'
+import '../../../components/navdesgin.css'
 
 const Colors = () => {
   const [user, setUser] = useState([])
@@ -54,7 +56,8 @@ const Colors = () => {
             <CTableHeaderCell scope="col">id</CTableHeaderCell>
             <CTableHeaderCell scope="col">Name</CTableHeaderCell>
             <CTableHeaderCell scope="col">Email</CTableHeaderCell>
-            <CTableHeaderCell scope="col">Admin</CTableHeaderCell>
+            <CTableHeaderCell scope="col">IsAdmin</CTableHeaderCell>
+            <CTableHeaderCell scope="col">QrCode</CTableHeaderCell>
             <CTableHeaderCell scope="col">Edit and Delete</CTableHeaderCell>
           </CTableRow>
         </CTableHead>
@@ -78,6 +81,9 @@ const Colors = () => {
                 ) : (
                   <CIcon icon={cilX} className="me-2" style={{ color: 'red' }} />
                 )}
+              </CTableDataCell>
+              <CTableDataCell>
+                <QRCode id={user._id} value={`${user.name},${user._id}`} className="qrcode_size" />
               </CTableDataCell>
               <CTableDataCell>
                 {

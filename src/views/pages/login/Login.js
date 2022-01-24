@@ -17,13 +17,12 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked } from '@coreui/icons'
 import { useHistory } from 'react-router-dom'
+import { useRef } from 'react'
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const userInfoFromLocalStorage = localStorage.getItem('userTime')
-    ? JSON.parse(localStorage.getItem('userTime'))
-    : null
+  const form = useRef()
   const history = useHistory()
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -38,16 +37,11 @@ const Login = () => {
       config,
     )
     localStorage.setItem('userTime', JSON.stringify(data))
-    // console.log(data)
     if (data) {
-      if (userInfoFromLocalStorage && userInfoFromLocalStorage.isAdmin === true) {
-        history.push('/dashboard')
-      }
-      history.push('/checking/check')
+      history.push('/dashboard')
     } else {
       history.push('/login')
     }
-    // console.log(email, password)
   }
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
@@ -57,7 +51,7 @@ const Login = () => {
             <CCardGroup>
               <CCard className="p-4 ">
                 <CCardBody>
-                  <CForm onSubmit={handleSubmit}>
+                  <CForm ref={form} onSubmit={handleSubmit}>
                     <h1>Login</h1>
                     <p className="text-medium-emphasis">Sign In to your account</p>
                     <CInputGroup className="mb-3">

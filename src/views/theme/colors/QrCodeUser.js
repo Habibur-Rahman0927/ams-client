@@ -1,9 +1,9 @@
 import QRCode from 'qrcode.react'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import QrReader from 'react-qr-reader'
 import { useBarcode } from 'react-barcodes'
 import { CButton, CCard, CCardBody, CCol, CCollapse, CRow } from '@coreui/react'
-// import axios from 'axios'
+import axios from 'axios'
 
 const QrCode = () => {
   // const [userDate, setUserDate] = useState([])
@@ -296,6 +296,7 @@ const QrCode = () => {
             <CCard className="mt-3">
               <CCardBody>
                 <div
+                  id="hello"
                   style={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -309,7 +310,7 @@ const QrCode = () => {
                     }`}
                   />
                   <br />
-                  <svg ref={inputRef} />
+                  <img alt="BarCode" ref={inputRef} />
                 </div>
               </CCardBody>
             </CCard>

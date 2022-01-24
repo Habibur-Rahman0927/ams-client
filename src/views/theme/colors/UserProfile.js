@@ -1,3 +1,5 @@
+import QRCode from 'qrcode.react'
+import { useBarcode } from 'react-barcodes'
 import PropTypes from 'prop-types'
 import React, { useEffect, useState, createRef } from 'react'
 import classNames from 'classnames'
@@ -6,12 +8,15 @@ import {
   CButton,
   CCard,
   CCardBody,
+  CCardHeader,
   CCol,
   CContainer,
   CForm,
   CFormInput,
   CInputGroup,
   CInputGroupText,
+  CListGroup,
+  CListGroupItem,
   CRow,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
@@ -84,11 +89,43 @@ const UserProfile = () => {
     localStorage.setItem('userTime', JSON.stringify(response.data))
     setMessage(response.statusText)
   }
+  const { inputRef } = useBarcode({
+    value: `${userInfoFromLocalStorage ? userInfoFromLocalStorage.name : null}`,
+    options: {
+      background: '#ccffff',
+    },
+  })
   return (
     <div className="min-vh-70 d-flex flex-row align-items-start">
       <CContainer>
         <CRow className="justify-content-center">
-          <CCol md={9} lg={7} xl={6}>
+          <CCol md={4} lg={7} xl={6}>
+            <CCard style={{ width: '30rem' }}>
+              <CCardHeader>
+                <h3>Your Profile</h3>
+              </CCardHeader>
+              <CListGroup flush>
+                <CListGroupItem>ID : {userInfoFromLocalStorage._id}</CListGroupItem>
+                <CListGroupItem>Name : {userInfoFromLocalStorage.name}</CListGroupItem>
+                <CListGroupItem>Email : {userInfoFromLocalStorage.email}</CListGroupItem>
+                <h6 style={{ textAlign: 'center' }}>Get Your QrCode</h6>{' '}
+                <CListGroupItem style={{ textAlign: 'center' }}>
+                  <QRCode
+                    id={userInfoFromLocalStorage ? userInfoFromLocalStorage._id : null}
+                    value={`${userInfoFromLocalStorage ? userInfoFromLocalStorage.name : null},${
+                      userInfoFromLocalStorage ? userInfoFromLocalStorage._id : null
+                    }`}
+                  />
+                </CListGroupItem>
+                <h6 style={{ textAlign: 'center' }}>Get Your BarCode</h6>{' '}
+                <CListGroupItem style={{ textAlign: 'center' }}>
+                  <svg ref={inputRef} />
+                </CListGroupItem>
+              </CListGroup>
+            </CCard>
+          </CCol>
+          <br />
+          <CCol md={6} lg={7} xl={6}>
             <CCard className="mx-4">
               <CCardBody className="p-4">
                 <CForm onSubmit={handleSubmit}>
