@@ -108,6 +108,21 @@ const Colors = () => {
     loadSelectData()
     return () => {}
   }, [userInfoFromLocalStorage])
+  //
+  const checkingApiFunc = async (attendanceApi, check, lati, long, placedata) => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfoFromLocalStorage.token}`,
+      },
+    }
+    await axios.post(
+      `http://localhost:5000/api/${attendanceApi}`,
+      { name, check, time, date, lati, long, placedata },
+      config,
+    )
+    setChecked(!checked)
+  }
   const handleSubmit = async () => {
     const { lati, long } = location
     const { data } = await axios.get(
@@ -125,43 +140,16 @@ const Colors = () => {
         if (userId === name) {
           if (userDate[i].id === userInfoFromLocalStorage._id) {
             if (RealTime > 9 && RealTime < 10) {
-              const config = {
-                headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: `Bearer ${userInfoFromLocalStorage.token}`,
-                },
-              }
-              await axios.post(
-                `http://localhost:5000/api/attendance/select`,
-                { name, check, time, date, lati, long, placedata },
-                config,
-              )
-              // console.log(data)
-              // console.log('match')
-              setChecked(!checked)
+              checkingApiFunc('attendance/select', check, lati, long, placedata)
             } else {
-              const config = {
-                headers: {
-                  'Content-Type': 'application/json',
-                  Authorization: `Bearer ${userInfoFromLocalStorage.token}`,
-                },
-              }
-              await axios.post(
-                `http://localhost:5000/api/pending/selectpending`,
-                { name, check, time, date, lati, long, placedata },
-                config,
-              )
-              // console.log(data)
-              // console.log('match pading')
-              setChecked(!checked)
-              // console.log(placedata)
+              checkingApiFunc('pending/selectpending', check, lati, long, placedata)
             }
           } else {
-            // console.log('not match id')
+            console.log('not match id')
           }
         } else {
           // const notMatch = "Don't Select other person"
-          // console.log('Dont Select other person')
+          console.log('Dont Select other person')
         }
       }
     } else {
@@ -172,20 +160,7 @@ const Colors = () => {
         // console.log(userInfoFromLocalStorage._id)
         if (userId === name) {
           if (userDate[i].id === userInfoFromLocalStorage._id) {
-            const config = {
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${userInfoFromLocalStorage.token}`,
-              },
-            }
-            await axios.post(
-              `http://localhost:5000/api/attendance/select`,
-              { name, check, time, date, lati, long, placedata },
-              config,
-            )
-            // console.log(data)
-            // console.log('match')
-            setChecked(!checked)
+            checkingApiFunc('attendance/select', check, lati, long, placedata)
           } else {
             console.log('not match id')
           }
@@ -194,7 +169,7 @@ const Colors = () => {
           console.log(notMatch)
         }
       }
-      // console.log('check false')
+      console.log('check false')
     }
     // console.log(data)
   }

@@ -72,7 +72,7 @@ const AppSidebar = () => {
                         <h6 className="navDesgin">Dashboard</h6>
                       </NavLink>
                       <NavLink to="/checking/admin" className="navDesgin">
-                        <h6 className="navDesgin">Datavalues</h6>
+                        <h6 className="navDesgin">Log Overview</h6>
                       </NavLink>
                       <NavLink to="/checking/filterUserTable" className="navDesgin">
                         <h6 className="navDesgin">Filter User</h6>
@@ -106,19 +106,13 @@ const AppSidebar = () => {
                   >
                     <>
                       <NavLink to="/checking/check" className="navDesgin">
-                        <h6 className="navDesgin">Check</h6>
-                      </NavLink>
-                      <NavLink to="/checking/table" className="navDesgin">
-                        <h6 className="navDesgin">Table</h6>
+                        <h6 className="navDesgin">Manual Check</h6>
                       </NavLink>
                       <NavLink to="/checking/qrcodeUser" className="navDesgin">
-                        <h6 className="navDesgin">QR CODE</h6>
+                        <h6 className="navDesgin">Autonomous Check</h6>
                       </NavLink>
-                      <NavLink to="/login" className="navDesgin">
-                        <h6 className="navDesgin">Login</h6>
-                      </NavLink>
-                      <NavLink to="/register" className="navDesgin">
-                        <h6 className="navDesgin">Register</h6>
+                      <NavLink to="/checking/table" className="navDesgin">
+                        <h6 className="navDesgin">Check Log</h6>
                       </NavLink>
                     </>
                   </CCardBody>
@@ -129,13 +123,13 @@ const AppSidebar = () => {
           {userInfoFromLocalStorage && userInfoFromLocalStorage.isAdmin === false && (
             <>
               <NavLink to="/checking/check" className="navDesgin">
-                <h6 className="navDesgin">Check</h6>
-              </NavLink>
-              <NavLink to="/checking/table" className="navDesgin">
-                <h6 className="navDesgin">Table</h6>
+                <h6 className="navDesgin">Manual Check</h6>
               </NavLink>
               <NavLink to="/checking/qrcodeUser" className="navDesgin">
-                <h6 className="navDesgin">QR CODE</h6>
+                <h6 className="navDesgin">Autonomous Check</h6>
+              </NavLink>
+              <NavLink to="/checking/table" className="navDesgin">
+                <h6 className="navDesgin">Check Log</h6>
               </NavLink>
             </>
           )}
