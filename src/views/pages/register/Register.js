@@ -13,7 +13,7 @@ import {
   CRow,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cilLockLocked, cilUser } from '@coreui/icons'
+import { cibSonos, cilLockLocked, cilUser } from '@coreui/icons'
 import { Link } from 'react-router-dom'
 import Card from 'src/views/theme/typography/Card'
 
@@ -26,30 +26,30 @@ const Register = () => {
   // const userInfoFromLocalStorage = localStorage.getItem('userTime')
   //   ? JSON.parse(localStorage.getItem('userTime'))
   //   : null
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-      },
+    const getRandomNumber = async () => {
+      const randomNumber = Math.floor(Math.random() * 10000000000)
+      const randomDigit = (randomNumber + '').split('.')[0]
+      if (randomDigit.length === 10) {
+        const ranNum = randomDigit
+        const config = {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+        const { data } = await axios.post(
+          'http://localhost:5000/api/users',
+          { name, email, password, ranNum },
+          config,
+        )
+        console.log(data)
+        setMessage(data.msg)
+      } else {
+        return getRandomNumber()
+      }
     }
-    const { data } = await axios.post(
-      'http://localhost:5000/api/users',
-      { name, email, password },
-      config,
-    )
-    console.log(data)
-    setMessage(data.msg)
-    // localStorage.setItem('userTime', JSON.stringify(data))
-    // if (data) {
-    //   if (userInfoFromLocalStorage && userInfoFromLocalStorage.isAdmin === true) {
-    //     history.push('/dashboard')
-    //   } else {
-    //     history.push('/checking/check')
-    //   }
-    // } else {
-    //   history.push('/register')
-    // }
+    getRandomNumber()
   }
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">

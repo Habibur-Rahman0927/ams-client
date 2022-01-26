@@ -22,6 +22,7 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 import { rgbToHex } from '@coreui/utils'
+// import '../../../components/navdesgin.css'
 
 const ThemeView = () => {
   const [color, setColor] = useState('rgb(255, 255, 255)')
@@ -90,7 +91,9 @@ const UserProfile = () => {
     setMessage(response.statusText)
   }
   const { inputRef } = useBarcode({
-    value: `${userInfoFromLocalStorage ? userInfoFromLocalStorage.name : null}`,
+    value: `${
+      userInfoFromLocalStorage ? userInfoFromLocalStorage.barCode : userInfoFromLocalStorage.name
+    }`,
     options: {
       background: '#ccffff',
     },
@@ -119,7 +122,7 @@ const UserProfile = () => {
                 </CListGroupItem>
                 <h6 style={{ textAlign: 'center' }}>Get Your BarCode</h6>{' '}
                 <CListGroupItem style={{ textAlign: 'center' }}>
-                  <svg ref={inputRef} />
+                  <svg alt="BarCode" className="svgClass" ref={inputRef} />
                 </CListGroupItem>
               </CListGroup>
             </CCard>
