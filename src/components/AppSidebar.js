@@ -109,7 +109,10 @@ const AppSidebar = () => {
                         <h6 className="navDesgin">Manual Check</h6>
                       </NavLink>
                       <NavLink to="/checking/qrcodeUser" className="navDesgin">
-                        <h6 className="navDesgin">Autonomous Check</h6>
+                        <h6 className="navDesgin">Scan By QrCode</h6>
+                      </NavLink>
+                      <NavLink to="/checking/barcodescanner" className="navDesgin">
+                        <h6 className="navDesgin">Scan By BarCode</h6>
                       </NavLink>
                       <NavLink to="/checking/table" className="navDesgin">
                         <h6 className="navDesgin">Check Log</h6>
@@ -125,9 +128,40 @@ const AppSidebar = () => {
               <NavLink to="/checking/check" className="navDesgin">
                 <h6 className="navDesgin">Manual Check</h6>
               </NavLink>
-              <NavLink to="/checking/qrcodeUser" className="navDesgin">
-                <h6 className="navDesgin">Autonomous Check</h6>
-              </NavLink>
+              <CButton
+                className="bg-transparent border-0 "
+                style={{
+                  fontWeight: '700',
+                  display: 'flex',
+                  width: '12rem',
+                  padding: '10px 0 10px 0',
+                  marginLeft: '30px',
+                  marginTop: '10px',
+                }}
+                onClick={() => setEmp(!emp)}
+              >
+                Autonomous Check
+              </CButton>
+              <CCollapse visible={emp}>
+                <CCard className="mt-3 border-0">
+                  <CCardBody
+                    style={{
+                      background: '#303C54',
+                      margin: '0',
+                    }}
+                  >
+                    <>
+                      <NavLink to="/checking/qrcodeUser" className="navDesgin">
+                        <h6 className="navDesgin">Scan By QrCode</h6>
+                      </NavLink>
+                      <NavLink to="/checking/barcodescanner" className="navDesgin">
+                        <h6 className="navDesgin">Scan By BarCode</h6>
+                      </NavLink>
+                    </>
+                  </CCardBody>
+                </CCard>
+              </CCollapse>
+
               <NavLink to="/checking/table" className="navDesgin">
                 <h6 className="navDesgin">Check Log</h6>
               </NavLink>

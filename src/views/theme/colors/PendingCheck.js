@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import {
   CTable,
   CTableHead,
@@ -11,13 +11,12 @@ import axios from 'axios'
 import { cilCheckAlt, cilTrash } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
 
-const Colors = () => {
+const PendingCheck = () => {
   const [checkData, setCheckData] = useState([])
   const userInfoFromLocalStorage = localStorage.getItem('userTime')
     ? JSON.parse(localStorage.getItem('userTime'))
     : null
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const loadCheckPendingData = async () => {
+  const loadCheckPendingData = useCallback(async () => {
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -27,7 +26,7 @@ const Colors = () => {
     const { data } = await axios.get('http://localhost:5000/api/pending/pendingadcheck', config)
     setCheckData(data)
     // console.log(data)
-  }
+  }, [userInfoFromLocalStorage])
   useEffect(() => {
     loadCheckPendingData()
   }, [loadCheckPendingData])
@@ -118,4 +117,4 @@ const Colors = () => {
   )
 }
 
-export default Colors
+export default PendingCheck

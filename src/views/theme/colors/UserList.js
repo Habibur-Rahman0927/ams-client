@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import {
   CTable,
   CTableHead,
@@ -21,7 +21,7 @@ const Colors = () => {
     ? JSON.parse(localStorage.getItem('userTime'))
     : null
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const loadCheckData = async () => {
+  const loadCheckData = useCallback(async () => {
     const config = {
       headers: {
         'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ const Colors = () => {
     const { data } = await axios.get('http://localhost:5000/api/users', config)
     setUser(data)
     // console.log(data)
-  }
+  }, [userInfoFromLocalStorage.token])
   useEffect(() => {
     loadCheckData()
   }, [loadCheckData])

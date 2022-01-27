@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import React, { useEffect, useState, createRef } from 'react'
+import React, { useEffect, useState, createRef, useCallback } from 'react'
 import classNames from 'classnames'
 import {
   CCol,
@@ -73,9 +73,12 @@ const Colors = () => {
     ? JSON.parse(localStorage.getItem('userTime'))
     : null
   const RealTime = new Date()
+  // console.log(RealTime)
   const months = RealTime.getMonth()
   const time = RealTime.getHours() + ':' + RealTime.getMinutes() + ':' + RealTime.getSeconds()
   const date = RealTime.getDate() + '-' + months + 1 + '-' + RealTime.getFullYear()
+  const getHours = RealTime.getHours()
+  // console.log(getHours)
 
   const success = (pos) => {
     var crd = pos.coords
@@ -83,6 +86,7 @@ const Colors = () => {
     const longitu = crd.longitude
     // console.log(crd.accuracy)
     // eslint-disable-next-line no-sequences
+    // console.log(latitu, longitu)
     setLocation({
       lati: latitu,
       long: longitu,
@@ -91,23 +95,21 @@ const Colors = () => {
   const error = (err) => {
     console.warn(`ERROR(${err.code}): ${err.message}`)
   }
+  const loadSelectData = useCallback(async () => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfoFromLocalStorage ? userInfoFromLocalStorage.token : null}`,
+      },
+    }
+    const { data } = await axios.get('http://localhost:5000/api/attendance/select', config)
+    setUserDate(data)
+  }, [userInfoFromLocalStorage])
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success, error)
-    const loadSelectData = async () => {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${
-            userInfoFromLocalStorage ? userInfoFromLocalStorage.token : null
-          }`,
-        },
-      }
-      const { data } = await axios.get('http://localhost:5000/api/attendance/select', config)
-      setUserDate(data)
-    }
     loadSelectData()
     return () => {}
-  }, [userInfoFromLocalStorage])
+  }, [loadSelectData])
   //
   const checkingApiFunc = async (attendanceApi, check, lati, long, placedata) => {
     const config = {
@@ -139,7 +141,7 @@ const Colors = () => {
         // console.log(userInfoFromLocalStorage._id)
         if (userId === name) {
           if (userDate[i].id === userInfoFromLocalStorage._id) {
-            if (RealTime > 9 && RealTime < 10) {
+            if (getHours >= 9 && getHours < 10) {
               checkingApiFunc('attendance/select', check, lati, long, placedata)
             } else {
               checkingApiFunc('pending/selectpending', check, lati, long, placedata)
