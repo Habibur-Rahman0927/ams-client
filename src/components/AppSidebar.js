@@ -109,10 +109,13 @@ const AppSidebar = () => {
                         <h6 className="navDesgin">Manual Check</h6>
                       </NavLink>
                       <NavLink to="/checking/qrcodeUser" className="navDesgin">
-                        <h6 className="navDesgin">Scan By QrCode</h6>
+                        <h6 className="navDesgin">Checking By QrCode</h6>
                       </NavLink>
                       <NavLink to="/checking/barcodescanner" className="navDesgin">
-                        <h6 className="navDesgin">Scan By BarCode</h6>
+                        <h6 className="navDesgin">Checking By BarCode</h6>
+                      </NavLink>
+                      <NavLink to="/checking/facerecognition" className="navDesgin">
+                        <h6 className="navDesgin">Checking By Face-Scan</h6>
                       </NavLink>
                       <NavLink to="/checking/table" className="navDesgin">
                         <h6 className="navDesgin">Check Log</h6>
@@ -152,10 +155,13 @@ const AppSidebar = () => {
                   >
                     <>
                       <NavLink to="/checking/qrcodeUser" className="navDesgin">
-                        <h6 className="navDesgin">Scan By QrCode</h6>
+                        <h6 className="navDesgin">Checking By QrCode</h6>
                       </NavLink>
                       <NavLink to="/checking/barcodescanner" className="navDesgin">
-                        <h6 className="navDesgin">Scan By BarCode</h6>
+                        <h6 className="navDesgin">Checking By BarCode</h6>
+                      </NavLink>
+                      <NavLink to="/checking/facerecognition" className="navDesgin">
+                        <h6 className="navDesgin">Checking By Face-Scan</h6>
                       </NavLink>
                     </>
                   </CCardBody>

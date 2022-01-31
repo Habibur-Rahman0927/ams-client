@@ -21,6 +21,7 @@ const UserProfile = React.lazy(() => import('./views/theme/colors/UserProfile'))
 const UserList = React.lazy(() => import('./views/theme/colors/UserList'))
 const PendingCheck = React.lazy(() => import('./views/theme/colors/PendingCheck'))
 const BarCodeScanner = React.lazy(() => import('./views/theme/colors/BarCodeScanner'))
+const FaceRecognition = React.lazy(() => import('./views/theme/colors/FaceRecognition'))
 
 const routes = [
   { path: '/', exact: true, name: 'Home' },
@@ -35,6 +36,7 @@ const routes = [
   { path: '/checking/userlist', name: 'UserList', component: UserList },
   { path: '/checking/paddingcheck', name: 'PendingCheck', component: PendingCheck },
   { path: '/checking/barcodescanner', name: 'BarCodeScanner', component: BarCodeScanner },
+  { path: '/checking/facerecognition', name: 'FaceRecognition', component: FaceRecognition },
 ]
 
 export default routes
