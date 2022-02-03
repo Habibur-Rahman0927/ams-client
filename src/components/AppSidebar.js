@@ -39,7 +39,7 @@ const AppSidebar = () => {
       <CSidebarBrand className="d-none d-md-flex" to="/home">
         {/* <CIcon className="sidebar-brand-full" icon={logoNegative} height={35} />
         <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} /> */}
-        <h4 style={{ textDecoration: 'none', color: 'white' }}>Attendance System</h4>
+        <h2 style={{ textDecoration: 'none', color: 'white' }}>AMS</h2>
       </CSidebarBrand>
       <CSidebarNav>
         <SimpleBar>

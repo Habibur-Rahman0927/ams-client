@@ -68,34 +68,34 @@ ThemeColor.propTypes = {
 }
 
 const FaceRecognition = () => {
-  const [imageObj, setImageObj] = useState({})
-  const [discriptor, setDiscriptor] = useState([])
-  const [name, setName] = useState('')
-  const userInfoFromLocalStorage = localStorage.getItem('userTime')
-    ? JSON.parse(localStorage.getItem('userTime'))
-    : null
-  const handleFileChange = (event) => {
-    setImageObj(URL.createObjectURL(event.target.files[0]))
-  }
-  const handleButtonClick = async (e) => {
-    e.preventDefault()
-    let blob = await fetch(imageObj)
-      .then((r) => r.blob())
-      .catch((error) => console.log(error))
-    if (!!blob && blob.type.includes('image')) {
-      setImageObj(URL.createObjectURL(blob))
+  // const [imageObj, setImageObj] = useState({})
+  // const [discriptor, setDiscriptor] = useState([])
+  // const [name, setName] = useState('')
+  // const userInfoFromLocalStorage = localStorage.getItem('userTime')
+  //   ? JSON.parse(localStorage.getItem('userTime'))
+  //   : null
+  // const handleFileChange = (event) => {
+  //   setImageObj(URL.createObjectURL(event.target.files[0]))
+  // }
+  // const handleButtonClick = async (e) => {
+  //   e.preventDefault()
+  //   let blob = await fetch(imageObj)
+  //     .then((r) => r.blob())
+  //     .catch((error) => console.log(error))
+  //   if (!!blob && blob.type.includes('image')) {
+  //     setImageObj(URL.createObjectURL(blob))
 
-      await getFullFaceDescription(imageObj).then((fullDesc) => {
-        fullDesc.map((fd) => {
-          setDiscriptor(fd.descriptor)
-          console.log(discriptor)
-        })
-      })
-    }
-  }
-  useEffect(() => {
-    loadModels()
-  }, [])
+  //     await getFullFaceDescription(imageObj).then((fullDesc) => {
+  //       fullDesc.map((fd) => {
+  //         setDiscriptor(fd.descriptor.toString())
+  //         console.log(discriptor)
+  //       })
+  //     })
+  //   }
+  // }
+  // useEffect(() => {
+  //   loadModels()
+  // }, [])
   // const postdata = async () => {
   //   const config = {
   //     headers: {
@@ -115,12 +115,12 @@ const FaceRecognition = () => {
       <div className="min-vh-70 d-flex flex-row align-items-start">
         <CContainer>
           <CRow className="justify-content-center">
-            <CCol md={3} lg={5} xl={4}>
+            {/* <CCol md={3} lg={5} xl={4}>
               <CCard className="mx-4">
                 <CCardBody className="p-4">
                   <CForm onSubmit={handleButtonClick}>
                     <br />
-                    {/* <CInputGroup className="mb-3">
+                    <CInputGroup className="mb-3">
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
@@ -132,7 +132,7 @@ const FaceRecognition = () => {
                         autoComplete="username"
                         required
                       />
-                    </CInputGroup> */}
+                    </CInputGroup>
                     <br />
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
@@ -154,12 +154,12 @@ const FaceRecognition = () => {
                     </CCol>
                   </CForm>
                   <br />
-                  {/* <CButton onClick={postdata} className="px-2" color="secondary">
+                  <CButton onClick={postdata} className="px-2" color="secondary">
                     <b>Postdata</b>
-                  </CButton> */}
+                  </CButton>
                 </CCardBody>
               </CCard>
-            </CCol>
+            </CCol> */}
             <CCol md={7} lg={5} xl={6}>
               <CameraFaceDetect />
             </CCol>
