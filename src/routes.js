@@ -29,7 +29,7 @@ const routes = [
   { path: '/checking', name: 'Checking', component: Colors, exact: true },
   { path: '/checking/check', name: 'Check', component: Colors },
   { path: '/checking/table', name: 'Table', component: Typography },
-  { path: '/checking/admin', name: 'Admin', component: Table },
+  { path: '/checking/admin', name: 'Admin', component: Table, exact: true },
   { path: '/checking/filterUserTable', name: 'FilterUserTabele', component: filterUserTable },
   { path: '/checking/qrcodeUser', name: 'QrCodeUserData', component: QrCodeUserData },
   { path: '/checking/userprofile', name: 'UserProfile', component: UserProfile },

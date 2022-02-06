@@ -17,6 +17,7 @@ const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
 // Pages
 const Login = React.lazy(() => import('./views/pages/login/Login'))
 const Register = React.lazy(() => import('./views/pages/register/Register'))
+const Table = React.lazy(() => import('./views/theme/colors/Table'))
 
 class App extends Component {
   render() {
@@ -33,6 +34,9 @@ class App extends Component {
             />
             <Route path="/checking/edit/:id" name="Edit User">
               <EditUser />
+            </Route>
+            <Route path="/checking/admin/:pageNumber" name="Table">
+              <Table />
             </Route>
             <Route path="/user/activate/:activetion_token" name="Activation" exact>
               <ActivationEmails />

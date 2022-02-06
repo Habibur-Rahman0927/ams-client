@@ -61,9 +61,7 @@ ThemeColor.propTypes = {
 }
 
 const Colors = () => {
-  const [userDate, setUserDate] = useState([])
   const [visible, setVisible] = useState(false)
-  const [name, setName] = useState('')
   const [checked, setChecked] = useState(true)
   const [location, setLocation] = useState({
     lati: '',
@@ -72,21 +70,18 @@ const Colors = () => {
   const userInfoFromLocalStorage = localStorage.getItem('userTime')
     ? JSON.parse(localStorage.getItem('userTime'))
     : null
+  const name = userInfoFromLocalStorage.name
   const RealTime = new Date()
-  // console.log(RealTime)
   const months = RealTime.getMonth()
   const time = RealTime.getHours() + ':' + RealTime.getMinutes() + ':' + RealTime.getSeconds()
   const date = RealTime.getDate() + '-' + months + 1 + '-' + RealTime.getFullYear()
   const getHours = RealTime.getHours()
-  // console.log(getHours)
 
   const success = (pos) => {
     var crd = pos.coords
     const latitu = crd.latitude
     const longitu = crd.longitude
     // console.log(crd.accuracy)
-    // eslint-disable-next-line no-sequences
-    // console.log(latitu, longitu)
     setLocation({
       lati: latitu,
       long: longitu,
@@ -95,21 +90,10 @@ const Colors = () => {
   const error = (err) => {
     console.warn(`ERROR(${err.code}): ${err.message}`)
   }
-  const loadSelectData = useCallback(async () => {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userInfoFromLocalStorage ? userInfoFromLocalStorage.token : null}`,
-      },
-    }
-    const { data } = await axios.get('http://localhost:5000/api/attendance/select', config)
-    setUserDate(data)
-  }, [userInfoFromLocalStorage])
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(success, error)
-    loadSelectData()
     return () => {}
-  }, [loadSelectData])
+  }, [])
   //
   const checkingApiFunc = async (attendanceApi, check, lati, long, placedata) => {
     const config = {
@@ -130,52 +114,22 @@ const Colors = () => {
     const { data } = await axios.get(
       `https://api.geoapify.com/v1/geocode/reverse?lat=${lati}&lon=${long}&apiKey=9515698e632448d0820d65669c5fa699`,
     )
-    console.log(data.features[0])
+    // console.log(data.features[0])
     const placedata = data.features[0].properties.formatted
     let check
     if (checked) {
       check = 'Check In'
-      for (let i = 0; i < userDate.length; i++) {
-        const userId = userDate[i].name
-        // console.log(userId)
-        // console.log(userInfoFromLocalStorage._id)
-        if (userId === name) {
-          if (userDate[i].id === userInfoFromLocalStorage._id) {
-            if (getHours >= 9 && getHours < 10) {
-              checkingApiFunc('attendance/select', check, lati, long, placedata)
-            } else {
-              checkingApiFunc('pending/selectpending', check, lati, long, placedata)
-            }
-          } else {
-            console.log('not match id')
-          }
-        } else {
-          // const notMatch = "Don't Select other person"
-          console.log('Dont Select other person')
-        }
+      if (getHours >= 9 && getHours < 10) {
+        checkingApiFunc('attendance/select', check, lati, long, placedata)
+      } else {
+        checkingApiFunc('pending/selectpending', check, lati, long, placedata)
       }
     } else {
       check = 'Check Out'
-      for (let i = 0; i < userDate.length; i++) {
-        const userId = userDate[i].name
-        // console.log(userId)
-        // console.log(userInfoFromLocalStorage._id)
-        if (userId === name) {
-          if (userDate[i].id === userInfoFromLocalStorage._id) {
-            checkingApiFunc('attendance/select', check, lati, long, placedata)
-          } else {
-            console.log('not match id')
-          }
-        } else {
-          const notMatch = "Don't Select other person"
-          console.log(notMatch)
-        }
-      }
-      console.log('check false')
+      checkingApiFunc('attendance/select', check, lati, long, placedata)
     }
     // console.log(data)
   }
-  // console.log(name)
   return (
     <>
       <div
@@ -185,22 +139,12 @@ const Colors = () => {
         }}
       >
         <CCard style={{ width: '26rem' }} className="text-center">
-          <CCardHeader>Attendance Page</CCardHeader>
+          <CCardHeader>Attendance Option</CCardHeader>
           <CCardBody>
-            <CCardTitle style={{ marginBottom: '20px' }}>Give Your Attendance Here</CCardTitle>
-            <CFormSelect
-              aria-label="Default select example"
-              onChange={(e) => setName(e.target.value)}
-            >
-              <option>Select your Name</option>
-              {userDate.map((v) => {
-                return (
-                  <option value={v.name} key={v.id}>
-                    {v.name}
-                  </option>
-                )
-              })}
-            </CFormSelect>
+            <CCardTitle style={{ marginBottom: '20px' }}>
+              {name} <br /> Please Give Your Attendance Here
+            </CCardTitle>
+            {/* <CCardTitle style={{ padding: '10px' }}></CCardTitle> */}
             <br />
             <CButton
               color="success"

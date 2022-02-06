@@ -22,6 +22,7 @@ import {
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
 import { rgbToHex } from '@coreui/utils'
+import ShareLink from './components/ShareLink'
 // import '../../../components/navdesgin.css'
 
 const ThemeView = () => {
@@ -123,6 +124,13 @@ const UserProfile = () => {
                 <h6 style={{ textAlign: 'center' }}>Get Your BarCode</h6>{' '}
                 <CListGroupItem style={{ textAlign: 'center' }}>
                   <svg alt="BarCode" className="svgClass" ref={inputRef} />
+                  <br />
+                  <ShareLink
+                    style={{}}
+                    label="Share"
+                    title="Here's Your Code"
+                    text="Grab your code here"
+                  />
                 </CListGroupItem>
               </CListGroup>
             </CCard>

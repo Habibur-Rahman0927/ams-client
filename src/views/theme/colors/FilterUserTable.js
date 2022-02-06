@@ -28,7 +28,7 @@ const Colors = () => {
       },
     }
     const { data } = await axios.get('http://localhost:5000/api/attendance/adcheck', config)
-    setCheckData(data)
+    setCheckData([])
   }, [userInfoFromLocalStorage.token])
   useEffect(() => {
     loadCheckData()
