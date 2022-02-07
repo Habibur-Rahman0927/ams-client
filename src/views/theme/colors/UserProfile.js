@@ -120,6 +120,13 @@ const UserProfile = () => {
                       userInfoFromLocalStorage ? userInfoFromLocalStorage._id : null
                     }`}
                   />
+                  <br />
+                  <ShareLink
+                    style={{}}
+                    label="Share"
+                    title="Here's Your Code"
+                    text="Grab your code here"
+                  />
                 </CListGroupItem>
                 <h6 style={{ textAlign: 'center' }}>Get Your BarCode</h6>{' '}
                 <CListGroupItem style={{ textAlign: 'center' }}>

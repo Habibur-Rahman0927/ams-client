@@ -1,5 +1,7 @@
 import React from 'react'
 import { CButton } from '@coreui/react'
+import CIcon from '@coreui/icons-react'
+import { cilLockLocked, cilShare } from '@coreui/icons'
 // eslint-disable-next-line react/prop-types
 function ShareLink({ label, text, title }) {
   const canonical = document.querySelector('link[rel=canonical]')
@@ -7,7 +9,8 @@ function ShareLink({ label, text, title }) {
   const shareDetails = { url, title, text }
 
   const handleSharing = async () => {
-    console.log(navigator.share)
+    const navigator = window.navigator
+    console.log(navigator)
     // console.log(shareDetails)
     try {
       await navigator
@@ -18,12 +21,8 @@ function ShareLink({ label, text, title }) {
     }
   }
   return (
-    <CButton
-      style={{ marginTop: '20px', marginBottom: '20px' }}
-      className="sharer-button"
-      onClick={handleSharing}
-    >
-      <span className="sharer-button-text">{label}</span>
+    <CButton style={{ margin: '10px' }} color="secondary" onClick={handleSharing}>
+      <CIcon icon={cilShare} />
     </CButton>
   )
 }

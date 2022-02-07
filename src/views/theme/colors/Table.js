@@ -20,11 +20,14 @@ import {
   CTableHeaderCell,
   CTableBody,
   CTableDataCell,
+  CPagination,
+  CPaginationItem,
 } from '@coreui/react'
 import { rgbToHex } from '@coreui/utils'
 import axios from 'axios'
 import Paginate from '../typography/Paginate'
 import { Link, useParams } from 'react-router-dom'
+import { useFetch } from './pagination/useFetch'
 
 const ThemeView = () => {
   const [color, setColor] = useState('rgb(255, 255, 255)')
@@ -70,37 +73,40 @@ ThemeColor.propTypes = {
 }
 
 const Colors = () => {
-  const params = useParams()
-  const pageNumber = params.pageNumber || 1
-  const [checkData, setCheckData] = useState([])
-  const [pages, setPages] = useState(null)
-  const [page, setPage] = useState(null)
-  const userInfoFromLocalStorage = localStorage.getItem('userTime')
-    ? JSON.parse(localStorage.getItem('userTime'))
-    : null
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const loadCheckData = async (keyword = '', pageNumber = '') => {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${userInfoFromLocalStorage && userInfoFromLocalStorage.token}`,
-      },
-    }
-    const { data } = await axios.get(
-      `http://localhost:5000/api/attendance/adcheck?keyword=${keyword}&pageNumber=${pageNumber}`,
-      config,
-    )
-    setCheckData(data.checkAll)
-    setPage(data.page)
-    setPages(data.pages)
-    // console.log(data)
-  }
+  const { loading, data } = useFetch()
+  const [page, setPage] = useState(0)
+  const [followers, setFollowers] = useState([])
   useEffect(() => {
-    loadCheckData('', pageNumber)
-  }, [loadCheckData, pageNumber])
+    if (loading) return
+    setFollowers(data[page])
+  }, [data, loading, page])
+  const nextPage = () => {
+    setPage((oldPage) => {
+      let nextPage = oldPage + 1
+      if (nextPage > data.length - 1) {
+        nextPage = 0
+      }
+      return nextPage
+    })
+  }
+  const prevPage = () => {
+    setPage((oldPage) => {
+      let prevPage = oldPage - 1
+      if (prevPage < 0) {
+        prevPage = data.length - 1
+      }
+      return prevPage
+    })
+  }
+
+  const handlePage = (index) => {
+    setPage(index)
+  }
   return (
     <>
-      <h1>This Is For Admin</h1>
+      <div>
+        <h1>{loading ? 'loading...' : 'This Is For Admin'}</h1>
+      </div>
       <br />
       <CTable color="secondary" striped>
         <CTableHead>
@@ -116,7 +122,7 @@ const Colors = () => {
         </CTableHead>
         <CTableBody>
           {/* <CTableHeaderCell scope="row">1</CTableHeaderCell> */}
-          {checkData.map((check) => (
+          {followers.map((check) => (
             // eslint-disable-next-line react/jsx-key
             <CTableRow key={check._id}>
               <CTableDataCell>{check.user}</CTableDataCell>
@@ -132,7 +138,24 @@ const Colors = () => {
           ))}
         </CTableBody>
       </CTable>
-      <Paginate pages={pages} page={page} isAdmin={true} />
+      {/* <Paginate pages={pages} page={page} isAdmin={true} /> */}
+      {!loading && (
+        <CPagination size="lg" align="center" aria-label="Page navigation example">
+          <CPaginationItem onClick={prevPage}>prev</CPaginationItem>
+          {data.map((item, index) => {
+            return (
+              <CPaginationItem
+                key={index}
+                active={index === page}
+                onClick={() => handlePage(index)}
+              >
+                {index + 1}
+              </CPaginationItem>
+            )
+          })}
+          <CPaginationItem onClick={nextPage}>next</CPaginationItem>
+        </CPagination>
+      )}
     </>
   )
 }

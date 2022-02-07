@@ -71,11 +71,12 @@ const Colors = () => {
     ? JSON.parse(localStorage.getItem('userTime'))
     : null
   const name = userInfoFromLocalStorage.name
-  const RealTime = new Date()
-  const months = RealTime.getMonth()
-  const time = RealTime.getHours() + ':' + RealTime.getMinutes() + ':' + RealTime.getSeconds()
-  const date = RealTime.getDate() + '-' + months + 1 + '-' + RealTime.getFullYear()
-  const getHours = RealTime.getHours()
+  const date = new Date()
+  // console.log(RealTime)
+  // const months = RealTime.getMonth()
+  const time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
+  // const date = months + 1 + '-' + RealTime.getDate() + '-' + RealTime.getFullYear()
+  const getHours = date.getHours()
 
   const success = (pos) => {
     var crd = pos.coords
