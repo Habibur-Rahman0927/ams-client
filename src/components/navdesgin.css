@@ -28,3 +28,21 @@
 .drawingBuffer{
   display: none;
 }
+.rmsc{
+  width: 86%;
+  --rmsc-radius: none !important;
+  border-top-left-radius: 5px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+    border-bottom-left-radius: 5px !important;
+}
+.btn-style{
+  border-top-left-radius: 0px !important;
+    border-top-right-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+    border-bottom-left-radius: 0px !important;
+}
+.btn-filter-style{
+  height: 40px;
+  margin-left: 20px;
+}

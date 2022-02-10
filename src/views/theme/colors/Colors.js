@@ -74,7 +74,7 @@ const Colors = () => {
   const date = new Date()
   // console.log(RealTime)
   // const months = RealTime.getMonth()
-  const time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds()
+  const time = date.getHours() + ':' + date.getMinutes()
   // const date = months + 1 + '-' + RealTime.getDate() + '-' + RealTime.getFullYear()
   const getHours = date.getHours()
 
