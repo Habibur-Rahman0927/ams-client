@@ -76,6 +76,7 @@ const Colors = () => {
   const { loading, data } = useFetch()
   const [page, setPage] = useState(0)
   const [followers, setFollowers] = useState([])
+  const reversData = followers.reverse()
   useEffect(() => {
     if (loading) return
     setFollowers(data[page])
@@ -122,7 +123,7 @@ const Colors = () => {
         </CTableHead>
         <CTableBody>
           {/* <CTableHeaderCell scope="row">1</CTableHeaderCell> */}
-          {followers.map((check) => (
+          {reversData.map((check) => (
             // eslint-disable-next-line react/jsx-key
             <CTableRow key={check._id}>
               <CTableDataCell>{check.user}</CTableDataCell>

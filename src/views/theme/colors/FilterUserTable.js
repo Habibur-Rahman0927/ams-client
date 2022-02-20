@@ -61,6 +61,7 @@ const Colors = () => {
     }
     const { data } = await axios.get('http://localhost:5000/api/attendance/adcheckbyfilter', config)
     // console.log(data)
+
     setCheckData(data)
   }, [userInfoFromLocalStorage.token])
   const loadUserData = useCallback(async () => {

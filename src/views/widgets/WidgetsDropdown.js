@@ -31,7 +31,7 @@ const WidgetsDropdown = () => {
       },
     }
     const { data } = await axios.get('http://localhost:5000/api/users', config)
-    console.log(data)
+    // console.log(data)
     setUser(data)
     setLoading(false)
     // console.log(data)
@@ -87,8 +87,8 @@ const WidgetsDropdown = () => {
           color="primary"
           value={
             <div>
-              <h1>User</h1>
-              <h1>{loading ? 'loading...' : user.length - 1}</h1>
+              <h2>User</h2>
+              <h4>{loading ? 'loading...' : user.length - 1}</h4>
             </div>
           }
           title=""
@@ -98,70 +98,11 @@ const WidgetsDropdown = () => {
                 <CIcon icon={cilOptions} className="text-high-emphasis-inverse" />
               </CDropdownToggle>
               <CDropdownMenu>
-                <Link to="checking/userlist">
-                  <CDropdownItem>See User</CDropdownItem>
+                <Link to="checking/userlist" style={{ textDecoration: 'none' }}>
+                  <CDropdownItem>User</CDropdownItem>
                 </Link>
               </CDropdownMenu>
             </CDropdown>
-          }
-          chart={
-            <CChartLine
-              className="mt-3 mx-3"
-              style={{ height: '70px' }}
-              data={{
-                labels: [],
-                datasets: [
-                  {
-                    label: 'My First dataset',
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgba(255,255,255,.55)',
-                    pointBackgroundColor: getStyle('--cui-primary'),
-                    data: [],
-                  },
-                ],
-              }}
-              options={{
-                plugins: {
-                  legend: {
-                    display: false,
-                  },
-                },
-                maintainAspectRatio: false,
-                scales: {
-                  x: {
-                    grid: {
-                      display: false,
-                      drawBorder: false,
-                    },
-                    ticks: {
-                      display: false,
-                    },
-                  },
-                  y: {
-                    min: 30,
-                    max: 89,
-                    display: false,
-                    grid: {
-                      display: false,
-                    },
-                    ticks: {
-                      display: false,
-                    },
-                  },
-                },
-                elements: {
-                  line: {
-                    borderWidth: 1,
-                    tension: 0.4,
-                  },
-                  point: {
-                    radius: 4,
-                    hitRadius: 10,
-                    hoverRadius: 4,
-                  },
-                },
-              }}
-            />
           }
         />
       </CCol>
@@ -172,8 +113,8 @@ const WidgetsDropdown = () => {
           value={
             <>
               <div>
-                <h1>Present</h1>
-                <h1>{loading ? 'loading...' : present.length}</h1>
+                <h2>Present</h2>
+                <h4>{loading ? 'loading...' : present.length}</h4>
               </div>
             </>
           }
@@ -184,67 +125,11 @@ const WidgetsDropdown = () => {
                 <CIcon icon={cilOptions} className="text-high-emphasis-inverse" />
               </CDropdownToggle>
               <CDropdownMenu>
-                <CDropdownItem>Action</CDropdownItem>
+                <Link to="checking/filterUserTable" style={{ textDecoration: 'none' }}>
+                  <CDropdownItem>Present</CDropdownItem>
+                </Link>
               </CDropdownMenu>
             </CDropdown>
-          }
-          chart={
-            <CChartLine
-              className="mt-3 mx-3"
-              style={{ height: '70px' }}
-              data={{
-                labels: [],
-                datasets: [
-                  {
-                    label: 'My First dataset',
-                    backgroundColor: 'transparent',
-                    borderColor: 'rgba(255,255,255,.55)',
-                    pointBackgroundColor: getStyle('--cui-info'),
-                    data: [],
-                  },
-                ],
-              }}
-              options={{
-                plugins: {
-                  legend: {
-                    display: false,
-                  },
-                },
-                maintainAspectRatio: false,
-                scales: {
-                  x: {
-                    grid: {
-                      display: false,
-                      drawBorder: false,
-                    },
-                    ticks: {
-                      display: false,
-                    },
-                  },
-                  y: {
-                    min: -9,
-                    max: 39,
-                    display: false,
-                    grid: {
-                      display: false,
-                    },
-                    ticks: {
-                      display: false,
-                    },
-                  },
-                },
-                elements: {
-                  line: {
-                    borderWidth: 1,
-                  },
-                  point: {
-                    radius: 4,
-                    hitRadius: 10,
-                    hoverRadius: 4,
-                  },
-                },
-              }}
-            />
           }
         />
       </CCol>
@@ -255,8 +140,8 @@ const WidgetsDropdown = () => {
           value={
             <>
               <div>
-                <h1>Absent</h1>
-                <h1>{loading ? 'loading...' : user.length - present.length - 1}</h1>
+                <h2>Absent</h2>
+                <h4>{loading ? 'loading...' : user.length - present.length - 1}</h4>
               </div>
             </>
           }
@@ -267,54 +152,11 @@ const WidgetsDropdown = () => {
                 <CIcon icon={cilOptions} className="text-high-emphasis-inverse" />
               </CDropdownToggle>
               <CDropdownMenu>
-                <CDropdownItem>Action</CDropdownItem>
+                <Link to="checking/filterUserTable" style={{ textDecoration: 'none' }}>
+                  <CDropdownItem>Absent</CDropdownItem>
+                </Link>
               </CDropdownMenu>
             </CDropdown>
-          }
-          chart={
-            <CChartLine
-              className="mt-3"
-              style={{ height: '70px' }}
-              data={{
-                labels: [],
-                datasets: [
-                  {
-                    label: 'My First dataset',
-                    backgroundColor: 'rgba(255,255,255,.2)',
-                    borderColor: 'rgba(255,255,255,.55)',
-                    data: [],
-                    fill: true,
-                  },
-                ],
-              }}
-              options={{
-                plugins: {
-                  legend: {
-                    display: false,
-                  },
-                },
-                maintainAspectRatio: false,
-                scales: {
-                  x: {
-                    display: false,
-                  },
-                  y: {
-                    display: false,
-                  },
-                },
-                elements: {
-                  line: {
-                    borderWidth: 2,
-                    tension: 0.4,
-                  },
-                  point: {
-                    radius: 0,
-                    hitRadius: 10,
-                    hoverRadius: 4,
-                  },
-                },
-              }}
-            />
           }
         />
       </CCol>
@@ -325,8 +167,8 @@ const WidgetsDropdown = () => {
           value={
             <>
               <div>
-                <h1>OverTime</h1>
-                <h1>{loading ? 'loading...' : over.length}</h1>
+                <h2>Over Time</h2>
+                <h4>{loading ? 'loading...' : over.length}</h4>
               </div>
             </>
           }
@@ -337,56 +179,11 @@ const WidgetsDropdown = () => {
                 <CIcon icon={cilOptions} className="text-high-emphasis-inverse" />
               </CDropdownToggle>
               <CDropdownMenu>
-                <CDropdownItem>Action</CDropdownItem>
+                <Link to="checking/filterUserTable" style={{ textDecoration: 'none' }}>
+                  <CDropdownItem>Over Time</CDropdownItem>
+                </Link>
               </CDropdownMenu>
             </CDropdown>
-          }
-          chart={
-            <CChartBar
-              className="mt-3 mx-3"
-              style={{ height: '70px' }}
-              data={{
-                labels: [],
-                datasets: [
-                  {
-                    label: 'My First dataset',
-                    backgroundColor: 'rgba(255,255,255,.2)',
-                    borderColor: 'rgba(255,255,255,.55)',
-                    data: [],
-                    barPercentage: 0.6,
-                  },
-                ],
-              }}
-              options={{
-                maintainAspectRatio: false,
-                plugins: {
-                  legend: {
-                    display: false,
-                  },
-                },
-                scales: {
-                  x: {
-                    grid: {
-                      display: false,
-                      drawTicks: false,
-                    },
-                    ticks: {
-                      display: false,
-                    },
-                  },
-                  y: {
-                    grid: {
-                      display: false,
-                      drawBorder: false,
-                      drawTicks: false,
-                    },
-                    ticks: {
-                      display: false,
-                    },
-                  },
-                },
-              }}
-            />
           }
         />
       </CCol>

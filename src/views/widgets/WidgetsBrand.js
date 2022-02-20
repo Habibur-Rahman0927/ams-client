@@ -36,79 +36,7 @@ const WidgetsBrand = ({ withCharts }) => {
 
   return (
     <CRow>
-      <CCol sm={6} lg={3}>
-        <CWidgetStatsD
-          className="mb-4"
-          {...(withCharts && {
-            chart: (
-              <CChart
-                className="position-absolute w-100 h-100"
-                type="line"
-                data={{
-                  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                  datasets: [
-                    {
-                      backgroundColor: 'rgba(255,255,255,.1)',
-                      borderColor: 'rgba(255,255,255,.55)',
-                      pointHoverBackgroundColor: '#fff',
-                      borderWidth: 2,
-                      data: [65, 59, 84, 84, 51, 55, 40],
-                      fill: true,
-                    },
-                  ],
-                }}
-                options={chartOptions}
-              />
-            ),
-          })}
-          icon={<CIcon icon={cibFacebook} height={52} className="my-4 text-white" />}
-          values={[
-            { title: 'friends', value: '89K' },
-            { title: 'feeds', value: '459' },
-          ]}
-          style={{
-            '--cui-card-cap-bg': '#3b5998',
-          }}
-        />
-      </CCol>
-
-      <CCol sm={6} lg={3}>
-        <CWidgetStatsD
-          className="mb-4"
-          {...(withCharts && {
-            chart: (
-              <CChart
-                className="position-absolute w-100 h-100"
-                type="line"
-                data={{
-                  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-                  datasets: [
-                    {
-                      backgroundColor: 'rgba(255,255,255,.1)',
-                      borderColor: 'rgba(255,255,255,.55)',
-                      pointHoverBackgroundColor: '#fff',
-                      borderWidth: 2,
-                      data: [1, 13, 9, 17, 34, 41, 38],
-                      fill: true,
-                    },
-                  ],
-                }}
-                options={chartOptions}
-              />
-            ),
-          })}
-          icon={<CIcon icon={cibTwitter} height={52} className="my-4 text-white" />}
-          values={[
-            { title: 'followers', value: '973k' },
-            { title: 'tweets', value: '1.792' },
-          ]}
-          style={{
-            '--cui-card-cap-bg': '#00aced',
-          }}
-        />
-      </CCol>
-
-      <CCol sm={6} lg={3}>
+      <CCol sm={6} lg={6}>
         <CWidgetStatsD
           className="mb-4"
           {...(withCharts && {
@@ -144,7 +72,7 @@ const WidgetsBrand = ({ withCharts }) => {
         />
       </CCol>
 
-      <CCol sm={6} lg={3}>
+      <CCol sm={6} lg={6}>
         <CWidgetStatsD
           className="mb-4"
           color="warning"
